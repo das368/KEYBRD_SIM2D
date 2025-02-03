@@ -22,13 +22,13 @@ map<int,char*> largeKeyPhrases;
 const int SYMBOLS_SIZE = 21;
 
 // Keycap constants
-#define KEYCAP_SIZE 50.0f // Square keycap size
-#define CORNER_RADIUS 8.0f // Radius for rounded corners
-#define SEGMENTS 12 // Number of segments for rounded corners
-#define KEY_SPACING 4.0f // Spacing between keycaps
+#define KEYCAP_SIZE 50.0f // square keycap size
+#define CORNER_RADIUS 8.0f // radius for rounded corners
+#define SEGMENTS 12 // number of segments for rounded corners
+#define KEY_SPACING 4.0f // spacing between keycaps
 
-// Function to draw a square keycap with rounded edges
-void drawKeycap(char letter, float x, float y, float multiplier) {
+
+void drawKeycap(char letter, float x, float y, float multiplier){ //drawKeycap
     if(keyStates[letter] || keyStates[symbols[letter]]){
         if(currentColorNum == 1){
             glColor3f(.5,.5,.5);
@@ -70,11 +70,8 @@ void drawKeycap(char letter, float x, float y, float multiplier) {
         }
     }
 
-
-
     glBegin(GL_POLYGON);
 
-    // Define main square area excluding corners
     glVertex2f(x + CORNER_RADIUS, y);
     glVertex2f(x + multiplier*KEYCAP_SIZE - CORNER_RADIUS, y);
     glVertex2f(x + multiplier*KEYCAP_SIZE, y + CORNER_RADIUS);
@@ -119,13 +116,12 @@ void drawKeycap(char letter, float x, float y, float multiplier) {
     }
     glEnd();
 
-    // Letter label (centered)
     if(keyStates[letter] || keyStates[symbols[letter]]){
         if(currentColorNum == 1){
-            glColor3f(1,1,1); //grey text for black white theme
+            glColor3f(1,1,1); 
         }
         if(currentColorNum==2){
-            glColor3f(.96,.624,.3); // 
+            glColor3f(.96,.624,.3); 
         }
         if(currentColorNum==3){
             glColor3f(.651,.973,1);
@@ -148,10 +144,10 @@ void drawKeycap(char letter, float x, float y, float multiplier) {
     }
     else{
         if(currentColorNum == 1){
-            glColor3f(.5,.5,.5); //grey text for black white theme
+            glColor3f(.5,.5,.5); 
         }
         if(currentColorNum==2){
-            glColor3f(1,.93,.8); //orange text for black and orange theme 
+            glColor3f(1,.93,.8);
         }
         if(currentColorNum==3){
             glColor3f(.898,.694,1);
@@ -175,7 +171,8 @@ void drawKeycap(char letter, float x, float y, float multiplier) {
 }
 
 
-void drawLargeKeycap(int key, float x, float y, float multiplier) {
+
+void drawLargeKeycap(int key, float x, float y, float multiplier){
     if(largeKeyStates[key]){
                 if(currentColorNum == 1){
             glColor3f(.5,.5,.5);
@@ -320,10 +317,7 @@ void drawLargeKeycap(int key, float x, float y, float multiplier) {
     }
 }
 
-
-
-// Function to draw the keyboard layout
-void drawKeyboard() {
+void drawKeyboard() { //draw entire keyboard
     
     const float LEFTstartX = 245.0f;
     const float TOPstartY = 235.0f;
@@ -367,7 +361,7 @@ void drawKeyboard() {
     drawKeycap('|',tempX,tempY,1.5);
     tempX = LEFTstartX;
     tempY += KEYCAP_SIZE+KEY_SPACING;
-    drawLargeKeycap(000,tempX,tempY,1.75);
+    drawLargeKeycap(000,tempX,tempY,1.75); //blank key
     tempX += 1.75*KEYCAP_SIZE + KEY_SPACING;
     drawKeycap('A',tempX,tempY,1);
     tempX += KEYCAP_SIZE + KEY_SPACING;
@@ -416,7 +410,7 @@ void drawKeyboard() {
     tempX += KEYCAP_SIZE + KEY_SPACING;
     drawKeycap('?',tempX,tempY,1);
     tempX += KEYCAP_SIZE + KEY_SPACING;
-    drawLargeKeycap(000,tempX,tempY,2.91);
+    drawLargeKeycap(000,tempX,tempY,2.91); //blank key
     tempX = LEFTstartX;
     tempY += KEYCAP_SIZE+KEY_SPACING;
     drawLargeKeycap(LCTRL,tempX,tempY,1.33);
@@ -436,7 +430,7 @@ void drawKeyboard() {
     drawLargeKeycap(000,tempX,tempY,1.33);
 
 }
-// Display callback function
+
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
@@ -463,7 +457,7 @@ void display(){
     glutSwapBuffers();
 }
 
-// Reshape callback function
+
 void reshape(int w, int h) {
     int fixedWidth = 1280;
     int fixedHeight = 720;
