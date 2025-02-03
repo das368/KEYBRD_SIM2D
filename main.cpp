@@ -13,6 +13,8 @@ const int RALT = 19;
 const int MENU = 20;
 const int RCTRL = 21;
 
+int currentColorNum = 1;
+
 map<char,bool>keyStates;
 map<int,bool>largeKeyStates;
 map<char,char> symbols;
@@ -28,10 +30,44 @@ const int SYMBOLS_SIZE = 21;
 // Function to draw a square keycap with rounded edges
 void drawKeycap(char letter, float x, float y, float multiplier) {
     if(keyStates[letter] || keyStates[symbols[letter]]){
-        glColor3f(0,0,0);
+        if(currentColorNum == 1){
+            glColor3f(.5,.5,.5);
+        }
+        if(currentColorNum==2){
+            glColor3f(1,.93,.8);
+        }
+        if(currentColorNum==3){
+            glColor3f(.898,.694,1);
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(1,.231,.231);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.773,1,.733);
+            
+        }
     }
     else{
-        glColor3f(1,1,1);
+        if(currentColorNum == 1){
+            glColor3f(1,1,1);
+        }
+        if(currentColorNum==2){
+            glColor3f(.96,.624,.3);
+
+        }
+        if(currentColorNum==3){
+            glColor3f(.651,.973,1);
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(.2,.2,.2);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.365,.89,.706);
+        }
     }
 
 
@@ -85,7 +121,24 @@ void drawKeycap(char letter, float x, float y, float multiplier) {
 
     // Letter label (centered)
     if(keyStates[letter] || keyStates[symbols[letter]]){
-        glColor3f(.5,.5,.5); //white text for top
+        if(currentColorNum == 1){
+            glColor3f(1,1,1); //grey text for black white theme
+        }
+        if(currentColorNum==2){
+            glColor3f(.96,.624,.3); // 
+        }
+        if(currentColorNum==3){
+            glColor3f(.651,.973,1);
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(.2,.2,.2);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.365,.89,.706);
+            
+        }
         glRasterPos2f(x + 10, y+20);
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, letter);
         if(symbols.find(letter) != symbols.end()){
@@ -94,7 +147,24 @@ void drawKeycap(char letter, float x, float y, float multiplier) {
         }
     }
     else{
-        glColor3f(.5,.5,.5); // Black text for top
+        if(currentColorNum == 1){
+            glColor3f(.5,.5,.5); //grey text for black white theme
+        }
+        if(currentColorNum==2){
+            glColor3f(1,.93,.8); //orange text for black and orange theme 
+        }
+        if(currentColorNum==3){
+            glColor3f(.898,.694,1);
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(1,.231,.231);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.773,1,.733);
+            
+        }
         glRasterPos2f(x + 10, y+20);
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, letter);
         if(symbols.find(letter) != symbols.end()){
@@ -107,10 +177,46 @@ void drawKeycap(char letter, float x, float y, float multiplier) {
 
 void drawLargeKeycap(int key, float x, float y, float multiplier) {
     if(largeKeyStates[key]){
-        glColor3f(0,0,0);
+                if(currentColorNum == 1){
+            glColor3f(.5,.5,.5);
+        }
+        if(currentColorNum==2){
+            glColor3f(1,.93,.8);
+
+        }
+        if(currentColorNum==3){
+            glColor3f(.898,.694,1);
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(1,.231,.231);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.773,1,.733);
+            
+        }
     }
     else{
-        glColor3f(1,1,1);
+                if(currentColorNum == 1){
+            glColor3f(1,1,1);
+        }
+        if(currentColorNum==2){
+            glColor3f(.96,.624,.3);
+
+        }
+        if(currentColorNum==3){
+            glColor3f(.651,.973,1);
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(.2,.2,.2);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.365,.89,.706);
+            
+        }
     }
 
     glBegin(GL_POLYGON);
@@ -162,14 +268,51 @@ void drawLargeKeycap(int key, float x, float y, float multiplier) {
 
     // Letter label (centered)
     if(largeKeyStates[key]){
-        glColor3f(.5,.5,.5); //white text for top
+                if(currentColorNum == 1){
+            glColor3f(1,1,1);
+        }
+        if(currentColorNum==2){
+            glColor3f(.96,.624,.3);
+
+        }
+        if(currentColorNum==3){
+            glColor3f(.651,.973,1);
+
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(.2,.2,.2);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.365,.89,.706);
+            
+        }
         glRasterPos2f(x + 5, y+30);
         for (int i = 0; largeKeyPhrases[key][i] != '\0'; i++) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, largeKeyPhrases[key][i]);
         }
     }
     else{
-        glColor3f(.5,.5,.5); // Black text for top
+        if(currentColorNum == 1){
+            glColor3f(.5,.5,.5);
+        }
+        if(currentColorNum==2){
+            glColor3f(1,.93,.8);
+
+        }
+        if(currentColorNum==3){
+            glColor3f(.898,.694,1);
+            
+        }
+        if(currentColorNum==4){
+            glColor3f(1,.231,.231);
+            
+        }
+        if(currentColorNum==5){
+            glColor3f(.773,1,.733);
+            
+        }
         glRasterPos2f(x + 5, y+30);
         for (int i = 0; largeKeyPhrases[key][i] != '\0'; i++) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, largeKeyPhrases[key][i]);
@@ -297,6 +440,25 @@ void drawKeyboard() {
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
+        if(currentColorNum == 1){
+            glClearColor(.85, .85, .85, 1);
+        }
+        if(currentColorNum==2){
+            glClearColor(.25, .25, .25, 1);
+
+        }
+        if(currentColorNum==3){
+            glClearColor(.55,.55,.55,1);
+            
+        }
+        if(currentColorNum==4){
+            glClearColor(.69,.306,.306, 1);
+            
+        }
+        if(currentColorNum==5){
+            glClearColor(.55,.671,.55, 1);
+            
+        }
     drawKeyboard();
     glutSwapBuffers();
 }
@@ -381,6 +543,29 @@ void specialKeyUp(int key, int x, int y) {
     glutPostRedisplay();
 }
 
+void mouseFunc(int button,int state,int x, int y){
+    if(state == GLUT_DOWN && button == GLUT_LEFT_BUTTON){
+        if(currentColorNum == 5){
+            currentColorNum = 1;
+            glutPostRedisplay();
+        }
+        else{
+            currentColorNum++;
+            glutPostRedisplay();
+        }
+    }
+    else if(state == GLUT_DOWN && GLUT_RIGHT_BUTTON){
+        if(currentColorNum == 1){
+            currentColorNum = 5;
+            glutPostRedisplay();
+        }
+        else{
+            currentColorNum--;
+            glutPostRedisplay();
+        }
+    }
+}
+
 
 void makeSymbolMap(map<char,char>& symbols){
     symbols['~'] = '`';
@@ -454,6 +639,7 @@ int main(int argc, char** argv) {
     glutKeyboardUpFunc(keyUp);
     glutSpecialFunc(specialKeyDown);
     glutSpecialUpFunc(specialKeyUp);
+    glutMouseFunc(mouseFunc);
     glutMainLoop();
     return 0;
 }
